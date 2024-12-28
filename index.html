@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe Haven Hotel</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a5a7b;
+            --secondary-color: #e0e4e8;
+            --accent-color: #f4a261;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%233a5a7b" fill-opacity="1" d="M0,192L48,208C96,224,192,256,288,261.3C384,267,480,245,576,229.3C672,213,768,203,864,213.3C960,224,1056,256,1152,261.3C1248,267,1344,245,1392,234.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320L192,320L96,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: var(--primary-color);
+        }
+
+        .navbar-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 80px 50px;
+            background-color: var(--secondary-color);
+        }
+
+        .feature {
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .feature i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 50px;
+            background-color: white;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .booking-section {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .booking-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .booking-form input, 
+        .booking-form button {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .booking-form button {
+            background-color: var(--accent-color);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .booking-form button:hover {
+            background-color: #f4a200;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .features, .gallery {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .navbar-links {
+                margin-top: 10px;
+            }
+        }
+        :root {
+    --primary-color: #3a5a7b;
+    --secondary-color: #e0e4e8;
+    --accent-color: #f4a261;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: var(--primary-color);
+}
+
+.navbar-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: var(--accent-color);
+}
+
+.header {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%233a5a7b" fill-opacity="1" d="M0,192L48,208C96,224,192,256,288,261.3C384,267,480,245,576,229.3C672,213,768,203,864,213.3C960,224,1056,256,1152,261.3C1248,267,1344,245,1392,234.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320L192,320L96,320L0,320Z"></path></svg>');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+}
+
+.header-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.header-content p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 50px;
+    background-color: white;
+}
+
+.gallery img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.featured-properties {
+    padding: 80px 50px;
+    background-color: var(--secondary-color);
+}
+
+.featured-properties h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.property-cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.property-card {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    max-width: 300px;
+}
+
+.property-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.property-card h3 {
+    margin: 20px 0 10px;
+}
+
+.property-card p {
+    margin-bottom: 20px;
+}
+
+.testimonials {
+    padding: 80px 50px;
+    background-color: white;
+}
+
+.testimonials h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.testimonial-cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.testimonial-card {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.testimonial-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.testimonial-author h4 {
+    margin-bottom: 5px;
+}
+
+.booking-section {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.booking-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-form input, 
+.booking-form button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+}
+
+.booking-form button {
+    background-color: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.booking-form button:hover {
+    background-color: #f4a200;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+@media (max-width: 768px) {
+    .gallery, .property-cards, .testimonial-cards {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .navbar-links {
+        margin-top: 10px;
+    }
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="navbar-logo">Luxe Haven</a>
+        <div class="navbar-links">
+            <a href="#home">Home</a>
+            <a href="#rooms">Rooms</a>
+            <a href="#amenities">Amenities</a>
+            <a href="#booking">Book Now</a>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="header-content">
+            <h1>Welcome to Luxe Haven Hotel</h1>
+            <p>Experience unparalleled luxury, breathtaking views, and world-class hospitality in the heart of the city.</p>
+            <a href="#booking" class="cta-button">Book Your Stay</a>
+        </div>
+    </header>
+    <section class="gallery">
+        <img src="/api/placeholder/300/200" alt="Luxurious Room">
+        <img src="/api/placeholder/300/200" alt="Dining Area">
+        <img src="/api/placeholder/300/200" alt="Spa">
+        <img src="/api/placeholder/300/200" alt="Rooftop Pool">
+    </section>
+
+    <section class="featured-properties">
+        <h2>Featured Properties</h2>
+        <div class="property-cards">
+            <div class="property-card">
+                <img src="/api/placeholder/300/200" alt="Countryside Villa">
+                <h3>Countryside Villa</h3>
+                <p>$199 / night</p>
+                <a href="#" class="cta-button">Book Now</a>
+            </div>
+            <div class="property-card">
+                <img src="/api/placeholder/300/200" alt="Beach Bungalow">
+                <h3>Beach Bungalow</h3>
+                <p>$249 / night</p>
+                <a href="#" class="cta-button">Book Now</a>
+            </div>
+            <div class="property-card">
+                <img src="/api/placeholder/300/200" alt="City Apartment">
+                <h3>City Apartment</h3>
+                <p>$179 / night</p>
+                <a href="#" class="cta-button">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>What Our Guests Say</h2>
+        <div class="testimonial-cards">
+            <div class="testimonial-card">
+                <p>"The staff was incredibly friendly and attentive. The room was spotless and the views were breathtaking."</p>
+                <div class="testimonial-author">
+                    <img src="/api/placeholder/50/50" alt="John Doe">
+                    <div>
+                        <h4>John Doe</h4>
+                        <p>New York, USA</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Luxe Haven exceeded all of my expectations. I'll be booking my next vacation here without a doubt."</p>
+                <div class="testimonial-author">
+                    <img src="/api/placeholder/50/50" alt="Jane Smith">
+                    <div>
+                        <h4>Jane Smith</h4>
+                        <p>London, UK</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <i class="fas fa-spa"></i>
+            <h3>Spa & Wellness</h3>
+            <p>Indulge in our state-of-the-art spa facilities and rejuvenate your body and mind.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-utensils"></i>
+            <h3>Fine Dining</h3>
+            <p>Savor exquisite culinary experiences at our Michelin-starred restaurant.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-swimmer"></i>
+            <h3>Infinity Pool</h3>
+            <p>Enjoy stunning panoramic views from our rooftop infinity pool.</p>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <img src="/api/placeholder/300/200" alt="Luxurious Room">
+        <img src="/api/placeholder/300/200" alt="Dining Area">
+        <img src="/api/placeholder/300/200" alt="Spa">
+        <img src="/api/placeholder/300/200" alt="Rooftop Pool">
+    </section>
+
+    <section id="booking" class="booking-section">
+        <h2>Book Your Dream Stay</h2>
+        <form class="booking-form" id="booking-form">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="date" placeholder="Check-in Date" required>
+            <input type="date" placeholder="Check-out Date" required>
+            <button type="submit">Check Availability</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Luxe Haven Hotel. All Rights Reserved.</p>
+        <div>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-facebook"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Booking form submission handler
+        document.getElementById('booking-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thanks for your booking request! We will contact you shortly.');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
